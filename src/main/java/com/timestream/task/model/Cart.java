@@ -20,6 +20,7 @@ import com.timestream.task.audit.DateAudit;
 
 @Entity
 @Table(name = "cart")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cart  extends DateAudit implements Serializable {
 	/**
 	 * 
@@ -36,7 +37,6 @@ public class Cart  extends DateAudit implements Serializable {
 	
 	@OneToMany
 	(cascade = CascadeType.PERSIST)
-	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private List<Item> items= new ArrayList<Item>();
 
 
