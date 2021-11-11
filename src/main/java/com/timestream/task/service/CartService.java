@@ -15,35 +15,32 @@ import com.timestream.task.repository.CartRepository;
 @Transactional(rollbackFor = Exception.class)
 public class CartService {
 	private CartRepository cartRepository;
-	
-	//get cart by id
-	public CartService(CartRepository cartRepository){
 
+	// get cart by id
+	public CartService(CartRepository cartRepository) {
 
-
-		this.cartRepository=cartRepository;
+		this.cartRepository = cartRepository;
 	}
-	//get all cart 
-	public List<Cart> getAllCarts()   
-	{  
+
+	// get all cart
+	public List<Cart> getAllCarts() {
 		return cartRepository.findAll();
-	}  
-	
+	}
+
 	public Cart getById(Long id) {
 		Cart cart = cartRepository.getById(id);
 		return cart;
 	}
 
-	//saving a specific record by using the method save() of CrudRepository  
-	public void save(CartDto cartDto)   
-	{  
+	// saving a specific record by using the method save() of CrudRepository
+	public void save(CartDto cartDto) {
 		Cart cart = new Cart();
 		List<Item> items = cartDto.getItems();
 		items.sort(Comparator.comparing(Item::getItemName));
-	
+
 		cart.setItems(items);
 		cart.setUserName(cartDto.getUserName());
-		cartRepository.save(cart);  
-	}  
+		cartRepository.save(cart);
+	}
 
 }
