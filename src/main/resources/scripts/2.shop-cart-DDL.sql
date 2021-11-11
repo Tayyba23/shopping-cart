@@ -5,4 +5,4 @@ CREATE TABLE `cart` (
   `created_at` DATETIME,
   `updated_at` DATETIME,
   PRIMARY KEY (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

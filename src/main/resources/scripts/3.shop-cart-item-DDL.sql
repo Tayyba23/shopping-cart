@@ -8,4 +8,4 @@ CREATE TABLE `item` (
   PRIMARY KEY (`id`),
   KEY `cart_id` (`cart_id`),
   CONSTRAINT `items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `Cart` (`cart_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

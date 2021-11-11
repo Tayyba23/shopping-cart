@@ -1,23 +1,24 @@
 package com.timestream.task.model;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.timestream.task.Audit.DateAudit;
+import com.timestream.task.audit.DateAudit;
 
 @Entity
 @Table(name = "item")
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
-public class Item extends DateAudit {
+public class Item extends DateAudit implements Serializable  {
 	/**
 	 * 
 	 */
@@ -29,7 +30,6 @@ public class Item extends DateAudit {
 	
 	@Column(name="item_name")
 	@NotEmpty
-	@NotNull
 	private String itemName;
 	
 	public long getId() {

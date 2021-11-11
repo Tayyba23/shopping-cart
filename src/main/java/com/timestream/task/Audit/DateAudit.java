@@ -1,4 +1,4 @@
-package com.timestream.task.Audit;
+package com.timestream.task.audit;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

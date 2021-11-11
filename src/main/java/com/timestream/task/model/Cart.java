@@ -1,16 +1,26 @@
 package com.timestream.task.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import com.timestream.task.Audit.DateAudit;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.timestream.task.audit.DateAudit;
 
 @Entity
 @Table(name = "cart")
-public class Cart  extends DateAudit {
+public class Cart  extends DateAudit implements Serializable {
 	/**
 	 * 
 	 */
@@ -21,11 +31,12 @@ public class Cart  extends DateAudit {
 	private long cartId;
 
 	@Column(name="user_name")
-	@NotNull
+	@NotEmpty
 	private String userName;
 	
 	@OneToMany
 	(cascade = CascadeType.PERSIST)
+	@JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private List<Item> items= new ArrayList<Item>();
 
 
@@ -50,7 +61,6 @@ public class Cart  extends DateAudit {
 	}
 
 	public void setItems(List<Item> items) {
-		System.out.println(items.size());
 		this.items = items;
 	}
 
